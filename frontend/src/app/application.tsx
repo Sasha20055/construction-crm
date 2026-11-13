@@ -2,6 +2,7 @@ import { lazy, Suspense, Component, type ReactNode } from 'react';
 import { QueryCache, MutationCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import {
   BrowserRouter,
+  HashRouter,
   Navigate,
   NavLink,
   Outlet,
@@ -28,9 +29,12 @@ const MyTasksPage = lazy(() =>
   import('@/pages/my-tasks').then((module) => ({ default: module.MyTasksPage })),
 );
 import { reportFailure } from '@/shared/monitoring';
+import { usesHashRouting } from '@/shared/config';
 import { errorMessage } from '@/shared/api';
 import { Button, ErrorNotice, Loading } from '@/shared/ui';
 import './styles.css';
+
+const AppRouter = usesHashRouting ? HashRouter : BrowserRouter;
 
 const queryClient = new QueryClient({
   queryCache: new QueryCache({
@@ -180,7 +184,7 @@ export function Application() {
       <ErrorBoundary>
         <QueryClientProvider client={queryClient}>
           <SessionProvider>
-            <BrowserRouter>
+            <AppRouter>
               <Routes>
                 <Route path="/sign-in" element={<EntryPage />} />
                 <Route element={<ProtectedLayout />}>
@@ -202,7 +206,7 @@ export function Application() {
                   />
                 </Route>
               </Routes>
-            </BrowserRouter>
+            </AppRouter>
           </SessionProvider>
         </QueryClientProvider>
       </ErrorBoundary>

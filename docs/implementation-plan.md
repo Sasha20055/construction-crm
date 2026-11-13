@@ -15,7 +15,7 @@
 | Backend             | Supabase Auth + PostgreSQL + Data API/RPC           | Авторизация и транзакции рядом с данными                       |
 | Качество            | ESLint, Prettier, TypeScript; проверки FSD-импортов | Проверяемые границы и единый стиль                             |
 | Проверки            | pgTAP, Vitest, React Testing Library, Playwright    | Сначала безопасность БД, затем критические сценарии UI         |
-| Доставка            | GitHub Actions, Vercel, Supabase Cloud              | Воспроизводимые проверки и демонстрация                        |
+| Доставка            | GitHub Actions, GitHub Pages/Vercel, Supabase Cloud | Воспроизводимые проверки и демонстрация                        |
 
 Версии выбираются совместимые на момент начала реализации и фиксируются lockfile.
 Redux/Zustand, NestJS, Prisma, очереди и Edge Functions для этого объёма не требуются.
@@ -234,3 +234,8 @@ PEOPLE-02: обновить регрессии выбора → заменить
 внутри manage-task → проверить выбор/отмену/клавиатуру, поиск за лимитом API,
 редактирование существующего назначения и настоящий браузерный сценарий Supabase.
 Контракт назначения (assignee_id) и серверные правила сохраняются.
+
+## Публикация на GitHub Pages
+
+Режим `pages` использует HashRouter и base `/construction-crm/`; стандартный режим остаётся на BrowserRouter.
+Workflow и проверка production-сборки описаны в [github-pages.md](./github-pages.md).

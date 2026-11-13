@@ -26,7 +26,9 @@
     "test:api:local": "node --env-file=.env.local backend/scripts/test-local-api.mjs",
     "test:ui:local": "node --env-file=.env.local scripts/test-live-ui.mjs",
     "test:postgres:local": "node --test backend/tests/postgres/*.test.mjs",
-    "db:profile": "node backend/scripts/profile-queries.mjs"
+    "db:profile": "node backend/scripts/profile-queries.mjs",
+    "build:pages": "npm run build -- --mode pages",
+    "test:pages": "node scripts/test-pages.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

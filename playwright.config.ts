@@ -1,6 +1,11 @@
 import { defineConfig, devices } from '@playwright/test';
+const pages = process.env.CRM_PAGES_TEST === '1';
 export default defineConfig({
-  testDir: process.env.CRM_LIVE_SUPABASE === '1' ? './tests/live' : './tests/e2e',
+  testDir: pages
+    ? './tests/pages'
+    : process.env.CRM_LIVE_SUPABASE === '1'
+      ? './tests/live'
+      : './tests/e2e',
   fullyParallel: false,
   workers: 1,
   timeout: 45_000,
@@ -17,8 +22,8 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: 'npm run dev -- --port 4173 --strictPort',
-    url: 'http://127.0.0.1:4173',
+    command: pages ? 'node tests/pages/server.mjs' : 'npm run dev -- --port 4173 --strictPort',
+    url: pages ? 'http://127.0.0.1:4173/construction-crm/' : 'http://127.0.0.1:4173',
     reuseExistingServer: false,
     env: {
       VITE_SUPABASE_URL: process.env.VITE_SUPABASE_URL ?? 'http://127.0.0.1:54321',

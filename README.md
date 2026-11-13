@@ -229,6 +229,12 @@ node backend/scripts/generate-schema-types.mjs
 
 ## Развёртывание
 
+GitHub Pages: пошаговая [настройка репозитория и публикации](docs/github-pages.md).
+Workflow `.github/workflows/pages.yml` публикует `frontend/dist` при push в `main`;
+нужны две Repository Variables Supabase и Source **GitHub Actions** в Settings → Pages.
+Сборка `npm run build:pages` использует `/construction-crm/` и hash-маршруты.
+Проверка production-сборки на статическом сервере: `npm run test:pages`.
+
 Vercel: импортировать GitHub-репозиторий, build `npm run build`, output `frontend/dist`, Node 22.
 Внести **только** `VITE_SUPABASE_URL` и `VITE_SUPABASE_PUBLISHABLE_KEY` в environment variables.
 `vercel.json` содержит SPA fallback. Для другого статического хостинга также нужен fallback на `index.html`.

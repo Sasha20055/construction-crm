@@ -1,5 +1,9 @@
 # Решения и допущения
 
+Для GitHub Pages выбран отдельный Vite mode `pages`: base `/construction-crm/` и HashRouter.
+Обычный режим сохраняет BrowserRouter. GitHub Actions публикует только `frontend/dist`;
+изменения облачной базы применяются отдельно. Детали — `github-pages.md`.
+
 Исходники разделены на `frontend/` и `backend/`. Служебная структура CLI создаётся
 в исключённом из Git `.local/supabase/`; источником миграций и серверной логики является `backend/`.
 Общий package.json сохраняет команды из корня, сквозные тесты находятся в `tests/`.

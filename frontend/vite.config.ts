@@ -7,7 +7,8 @@ import { defineConfig } from 'vitest/config';
 const version = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8'))
   .version as string;
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
+  base: mode === 'pages' ? '/construction-crm/' : '/',
   define: { __APP_VERSION__: JSON.stringify(version) },
   root: fileURLToPath(new URL('.', import.meta.url)),
   envDir: fileURLToPath(new URL('..', import.meta.url)),
@@ -36,4 +37,4 @@ export default defineConfig({
     testTimeout: 30000,
     hookTimeout: 60000,
   },
-});
+}));

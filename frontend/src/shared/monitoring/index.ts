@@ -1,4 +1,5 @@
 import { ApiError, supabase } from '@/shared/api';
+import { usesHashRouting } from '@/shared/config';
 
 export type ErrorSource = 'render' | 'query' | 'mutation' | 'runtime';
 const expectedCodes = new Set([
@@ -37,7 +38,9 @@ export function reportFailure(error: unknown, source: ErrorSource) {
     id,
     source,
     code: errorCode(error),
-    route: routeTemplate(window.location.pathname),
+    route: routeTemplate(
+      usesHashRouting ? window.location.hash.slice(1).split('?')[0] : window.location.pathname,
+    ),
     release: __APP_VERSION__,
   };
   console.error('Application failure', event);
