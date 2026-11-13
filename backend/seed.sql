@@ -1,0 +1,2 @@
+-- Accounts and demo content are provisioned by `npm run demo:seed`.
+-- No fixed passwords or privileged keys belong in migrations/seed files.

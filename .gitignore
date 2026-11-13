@@ -1,0 +1,15 @@
+node_modules/
+dist/
+coverage/
+.env
+.env.*
+!.env.example
+*.tsbuildinfo
+test-results/
+playwright-report/
+backend/.temp/
+backend/.branches/
+.DS_Store
+demo-credentials.json
+
+.local/
