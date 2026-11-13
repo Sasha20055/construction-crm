@@ -226,20 +226,3 @@ node backend/scripts/generate-schema-types.mjs
 ```
 
 Это генерация, не ручное дублирование таблиц. Supabase CLI также добавляет типы связей для вложенных запросов.
-
-## Развёртывание
-
-GitHub Pages: пошаговая [настройка репозитория и публикации](docs/github-pages.md).
-Workflow `.github/workflows/pages.yml` публикует `frontend/dist` при push в `main`;
-нужны две Repository Variables Supabase и Source **GitHub Actions** в Settings → Pages.
-Сборка `npm run build:pages` использует `/construction-crm/` и hash-маршруты.
-Проверка production-сборки на статическом сервере: `npm run test:pages`.
-
-Vercel: импортировать GitHub-репозиторий, build `npm run build`, output `frontend/dist`, Node 22.
-Внести **только** `VITE_SUPABASE_URL` и `VITE_SUPABASE_PUBLISHABLE_KEY` в environment variables.
-`vercel.json` содержит SPA fallback. Для другого статического хостинга также нужен fallback на `index.html`.
-Применить миграции к облачной БД и отключить signup до передачи доступа.
-
-Проверить вход трёх пользователей на конечном домене и выполнить API-тесты. Передать URL приложения,
-GitHub, доступы и [объяснение руководителю](docs/handover.md) одним сообщением в hh.ru.
-В репозитории не хранится готовый пароль для сдачи.
